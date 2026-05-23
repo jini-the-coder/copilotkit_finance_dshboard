@@ -1,0 +1,140 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+// ── App root layout ───────────────────────────────────────────────────────
+.app-layout {
+  display:   flex;
+  height:    100vh;
+  width:     100vw;
+  overflow:  hidden;
+  cursor:    auto;
+  user-select: auto;
+
+  // While dragging: lock cursor globally & block text selection
+  &--dragging {
+    cursor:      col-resize;
+    user-select: none;
+  }
+}
+
+// ── Dashboard panel ───────────────────────────────────────────────────────
+// Outer column has NO scroll — topbar stays fixed, inner content scrolls.
+.app-layout__dashboard {
+  flex:      1;
+  min-width: 0;          // prevent flex blowout
+  height:    100vh;
+  overflow:  hidden;     // .dashboard__content handles its own scroll
+  display:   flex;       // allow inner .dashboard to fill height
+  flex-direction: column;
+}
+
+// ── Drag handle ───────────────────────────────────────────────────────────
+.app-layout__handle {
+  position:       relative;
+  flex-shrink:    0;
+  width:          12px;
+  height:         100%;
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  cursor:         col-resize;
+  background:     #FAF7F2;
+  border-left:    1px solid #E7E5E4;
+  border-right:   1px solid #E7E5E4;
+  transition:     background 0.15s;
+  z-index:        10;
+
+  &:hover,
+  &--active {
+    background: #F5F5F4;
+
+    .app-layout__handle-line {
+      background: #C2410C;
+    }
+    .app-layout__handle-dot {
+      background: #C2410C;
+    }
+  }
+
+  // ⬅ When chat is closed: hide the handle entirely so dashboard fills viewport
+  &--hidden {
+    display: none;
+  }
+}
+
+// Vertical line running full height of the handle
+.app-layout__handle-line {
+  width:         1px;
+  height:        100%;
+  background:    #E7E5E4;
+  transition:    background 0.15s;
+  pointer-events: none;
+}
+
+// Grip dots centred on the line
+.app-layout__handle-dots {
+  position:       absolute;
+  top:            50%;
+  left:           50%;
+  transform:      translate(-50%, -50%);
+  display:        flex;
+  flex-direction: column;
+  gap:            4px;
+  pointer-events: none;
+}
+
+.app-layout__handle-dot {
+  width:         3px;
+  height:        3px;
+  border-radius: 50%;
+  background:    #A8A29E;
+  transition:    background 0.15s;
+}
+
+// ── ChatBot panel ─────────────────────────────────────────────────────────
+.app-layout__chat {
+  flex-shrink: 0;
+  width:       var(--chat-width); // driven by JS via CSS custom property
+  height:      100vh;
+  overflow:    hidden;            // ChatBot handles its own scroll
+  transition:  width 0.25s ease;  // smooth collapse/expand
+
+  // ⬅ When chat is closed: collapse to 0 so dashboard takes the whole row.
+  // The floating toggle button (.chatbot-toggle) is position:fixed,
+  // so it still appears on top of the dashboard.
+  &--collapsed {
+    width: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

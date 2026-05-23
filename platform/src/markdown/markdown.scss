@@ -1,0 +1,145 @@
+@use "../styles/global" as *;
+
+// ── Mermaid diagram wrapper ───────────────────────────────────
+.mermaid-block {
+  background: lighten($card, 2%);
+  border: 1px solid $border;
+  border-radius: 4px;
+  padding: $space-md;
+  margin: $space-sm 0;
+  overflow-x: auto;
+
+  svg { max-width: 100%; }
+}
+
+// ── Markdown content wrapper ──────────────────────────────────
+.md {
+  font-size: 12px;
+  line-height: 1.65;
+  color: $black;
+  font-family: var(--font-sans);
+
+  p      { margin: 6px 0; }
+  strong { font-weight: 700; color: $black; }
+  em     { color: lighten($black, 30%); }
+
+  h1 {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 12px 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid $primary;
+    color: $black;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 10px 0 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid $border;
+    color: $black;
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 700;
+    color: $primary;
+    margin: 8px 0 4px;
+  }
+
+  ul, ol {
+    margin: 6px 0;
+    padding-left: 20px;
+  }
+
+  li { margin: 3px 0; }
+
+  hr {
+    border: none;
+    border-top: 1px solid $border;
+    margin: 10px 0;
+  }
+
+  blockquote {
+    border-left: 3px solid $primary;
+    margin: 8px 0;
+    padding-left: 12px;
+    color: lighten($black, 20%);
+    font-style: italic;
+  }
+
+  a {
+    color: $primary;
+    text-decoration: underline;
+  }
+
+  // Inline code
+  code {
+    background: $input-bg;
+    border: 1px solid $border;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.88em;
+    font-family: var(--font-sans);
+    color: $primary;
+  }
+
+  // Code block
+  pre {
+    background: $card;
+    border: 1px solid $border;
+    border-left: 3px solid $primary;
+    border-radius: 4px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    margin: 8px 0;
+    font-size: 12px;
+
+    // reset inline code styles inside pre
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: $black;
+      font-size: inherit;
+    }
+  }
+
+  // Tables
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  thead { background: $primary; }
+
+  th {
+    padding: 7px 12px;
+    color: $white;
+    font-weight: 700;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  tr {
+    border-bottom: 1px solid $border;
+    transition: background $transition-fast;
+
+    &:hover { background: rgba($primary, 0.04); }
+  }
+
+  td {
+    padding: 6px 12px;
+    color: $black;
+    font-size: 12px;
+  }
+}

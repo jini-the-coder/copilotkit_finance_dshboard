@@ -1,0 +1,132 @@
+// ─────────────────────────────────────────────────────────────
+// Sales Advisor — global.scss
+// Import this once in App.tsx. All other .scss files use these vars.
+// ─────────────────────────────────────────────────────────────
+
+// ── Brand Variables ───────────────────────────────────────────
+$primary:  #1e40af;
+$white:    #ffffff;
+$black:    #111111;
+$card:     #f7f7f7;
+$input-bg: #eeeeee;
+$border:   #d0d0d0;
+$dim:      #888888;
+$green:    #16a34a;
+
+// ── Typography ────────────────────────────────────────────────
+$font-mono: "Verdana", sans-serif;
+$font-size-base: 13px;
+
+// ── Spacing scale ─────────────────────────────────────────────
+$space-xs:  4px;
+$space-sm:  8px;
+$space-md:  14px;
+$space-lg:  20px;
+$space-xl:  28px;
+
+// ── Transitions ───────────────────────────────────────────────
+$transition-fast: all 0.15s ease;
+$transition-base: all 0.25s ease;
+$transition-slow: all 0.4s ease;
+
+// ── Reset & Base ──────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: $font-mono;
+  font-size: $font-size-base;
+  background: $white;
+  color: $black;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: $font-mono;
+  cursor: pointer;
+  &:disabled { cursor: not-allowed; }
+}
+
+input {
+  font-family: $font-mono;
+}
+
+// ── Scrollbar (shared thin style) ─────────────────────────────
+@mixin thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $border transparent;
+
+  &::-webkit-scrollbar       { width: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: $border; border-radius: 2px; }
+}
+
+// ── Card (shared panel style) ─────────────────────────────────
+@mixin card($padding: $space-lg) {
+  background: $card;
+  border: 1px solid $border;
+  padding: $padding;
+}
+
+// ── Red flash animation (KPI tiles update) ────────────────────
+@keyframes flash-border {
+  0%   { border-color: $primary; box-shadow: 0 0 18px rgba($primary, 0.25); }
+  100% { border-color: $border; box-shadow: none; }
+}
+
+@keyframes flash-bar {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+// ── Utility classes ───────────────────────────────────────────
+.text-dim     { color: $dim; }
+.text-primary { color: $primary; }
+.text-black   { color: $black; }
+.text-mono    { font-family: $font-mono; }
+.text-upper   { text-transform: uppercase; letter-spacing: 0.12em; }
+.text-bold    { font-weight: 700; }
+
+.flex         { display: flex; }
+.flex-col     { display: flex; flex-direction: column; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.gap-sm       { gap: $space-sm; }
+.gap-md       { gap: $space-md; }
+.flex-1       { flex: 1; }
+
+.label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $dim;
+}
+
+.section-divider {
+  width: 1px;
+  height: 28px;
+  background: $border;
+  margin: 0 $space-sm;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $green;
+  flex-shrink: 0;
+}

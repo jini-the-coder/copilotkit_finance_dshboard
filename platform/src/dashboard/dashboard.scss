@@ -1,0 +1,685 @@
+// ── Meridian Bank · Corporate dashboard styles ───────────────
+// Clean, professional, pitch-deck polished.
+// Soft slate-blue primary, white cards, gentle rounding.
+// Explanations live in hover (?) icon tooltips — captions removed.
+
+:root {
+  --m-primary:    #1E40AF;
+  --m-primary-alt:#3B82F6;
+  --m-accent:     #0E7490;
+  --m-ink:        #0F172A;
+  --m-ink-soft:   #334155;
+  --m-dim:        #64748B;
+  --m-border:     #E2E8F0;
+  --m-border-hi:  #CBD5E1;
+  --m-bg:         #F8FAFC;
+  --m-surface:    #FFFFFF;
+  --m-good:       #059669;
+  --m-warn:       #D97706;
+  --m-bad:        #DC2626;
+
+  --font-sans:    "Inter", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", "Söhne", sans-serif;
+  --font-mono:    "JetBrains Mono", "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow:    0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-hi: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-tip:0 6px 24px rgba(15, 23, 42, 0.18);
+}
+
+.dashboard, .dashboard * { box-sizing: border-box; }
+
+.dashboard {
+  background:     var(--m-bg);
+  color:          var(--m-ink);
+  font-family:    var(--font-sans);
+  font-size:      13px;
+  width:          100%;
+  height:         100%;
+  display:        flex;
+  flex-direction: column;
+  overflow:       hidden;
+
+  &__content {
+    padding:        24px 28px 40px;
+    flex:           1;
+    min-height:     0;
+    overflow-y:     auto;
+    overflow-x:     hidden;
+    display:        flex;
+    flex-direction: column;
+    gap:            20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--m-border-hi) transparent;
+    &::-webkit-scrollbar          { width: 10px; }
+    &::-webkit-scrollbar-track    { background: transparent; }
+    &::-webkit-scrollbar-thumb    { background: var(--m-border-hi); border-radius: 5px; }
+    &::-webkit-scrollbar-thumb:hover { background: var(--m-dim); }
+  }
+}
+
+// ── Topbar ────────────────────────────────────────────────────
+.topbar {
+  background:    var(--m-surface);
+  border-bottom: 1px solid var(--m-border);
+  padding:       14px 28px;
+  display:       flex;
+  align-items:   center;
+  justify-content: space-between;
+  gap:           16px;
+  flex-shrink:   0;
+  box-shadow:    var(--shadow-sm);
+
+  &__left { display: flex; align-items: center; gap: 14px; }
+
+  &__logo {
+    width: 100px;
+    display: flex; align-items: center; justify-content: center;
+      img { max-width: 100%; max-height: 100%; }
+
+  }
+  &__brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--m-ink);
+    letter-spacing: -0.3px;
+  }
+  &__brand-sub {
+    font-size: 11px;
+    color: var(--m-dim);
+    margin-top: 1px;
+  }
+
+  &__center { flex: 1; display: flex; justify-content: center; }
+  &__date {
+    font-size: 12px;
+    color: var(--m-ink-soft);
+    font-weight: 500;
+  }
+
+  &__right { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+  &__btn {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--m-border);
+    background: var(--m-surface);
+    color: var(--m-ink-soft);
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover { border-color: var(--m-border-hi); color: var(--m-ink); }
+
+    &--primary {
+      background: var(--m-primary);
+      color: white;
+      border-color: var(--m-primary);
+      &:hover { background: #1d399c; border-color: #1d399c; color: white; }
+    }
+  }
+}
+
+// ── Welcome row ───────────────────────────────────────────────
+.welcome {
+  &__line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  &__title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--m-ink);
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+  &__period {
+    font-size: 12px;
+    color: var(--m-dim);
+    font-weight: 500;
+    padding: 4px 10px;
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    border-radius: var(--radius-sm);
+  }
+  &__sub {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--m-ink-soft);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+  &__qmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--m-primary);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+}
+
+// ── Info icon (?) with hover tooltip ──────────────────────────
+// Pure-CSS hover tooltip; no JS. Positioned above the icon by default;
+// flips below if near the top of the card via the .info-icon--below modifier
+// (not used yet, kept available).
+.info-icon {
+  position:        relative;
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  width:           16px;
+  height:          16px;
+  flex-shrink:     0;
+  border-radius:   50%;
+  background:      var(--m-border);
+  color:           var(--m-ink-soft);
+  font-size:       10px;
+  font-weight:     700;
+  font-family:     var(--font-sans);
+  cursor:          help;
+  user-select:     none;
+  transition:      background 0.15s ease, color 0.15s ease;
+  line-height:     1;
+  vertical-align:  middle;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--m-primary);
+    color:      white;
+    outline:    none;
+  }
+
+  // ── Tooltip ──
+  // Vertical placement (.info-icon--above / --below) controls top/bottom.
+  // Horizontal placement (.info-icon--right / --left) controls which side
+  // of the icon the tooltip extends from. Right-anchored = tooltip extends
+  // leftward; left-anchored = tooltip extends rightward.
+  &__tip {
+    position:      absolute;
+    width:         260px;
+    padding:       10px 12px;
+    background:    var(--m-ink);
+    color:         #F8FAFC;
+    font-size:     12px;
+    font-weight:   400;
+    line-height:   1.55;
+    border-radius: var(--radius-sm);
+    box-shadow:    var(--shadow-tip);
+    opacity:       0;
+    visibility:    hidden;
+    transition:    opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    pointer-events: none;
+    z-index:       50;
+    text-align:    left;
+  }
+
+  // ── Horizontal anchoring ──
+  &--right &__tip { right: -4px; }   // tooltip extends to the left from the icon
+  &--left  &__tip { left:  -4px; }   // tooltip extends to the right from the icon
+
+  // ── Vertical: above (default) — arrow points down at the icon ──
+  &--above &__tip {
+    bottom:    calc(100% + 8px);
+    transform: translateY(4px);
+  }
+  &--above#{&}--right &__tip::after {
+    content: ""; position: absolute;
+    top: 100%; right: 8px;
+    border: 5px solid transparent; border-top-color: var(--m-ink);
+  }
+  &--above#{&}--left &__tip::after {
+    content: ""; position: absolute;
+    top: 100%; left: 8px;
+    border: 5px solid transparent; border-top-color: var(--m-ink);
+  }
+
+  // ── Vertical: below — arrow points up at the icon ──
+  &--below &__tip {
+    top:       calc(100% + 8px);
+    transform: translateY(-4px);
+  }
+  &--below#{&}--right &__tip::after {
+    content: ""; position: absolute;
+    bottom: 100%; right: 8px;
+    border: 5px solid transparent; border-bottom-color: var(--m-ink);
+  }
+  &--below#{&}--left &__tip::after {
+    content: ""; position: absolute;
+    bottom: 100%; left: 8px;
+    border: 5px solid transparent; border-bottom-color: var(--m-ink);
+  }
+
+  &:hover &__tip,
+  &:focus-visible &__tip {
+    opacity:    1;
+    visibility: visible;
+    transform:  translateY(0);
+  }
+}
+
+// ── KPI grid ──────────────────────────────────────────────────
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.kpi-tile {
+  background:    var(--m-surface);
+  border:        1px solid var(--m-border);
+  border-radius: var(--radius);
+  padding:       14px 16px;
+  box-shadow:    var(--shadow-sm);
+  transition:    box-shadow 0.2s ease, transform 0.2s ease;
+  position:      relative;
+  overflow:      visible;    // allow tooltip to escape the tile
+
+  &:hover {
+    box-shadow: var(--shadow-hi);
+    transform:  translateY(-1px);
+    z-index:    2;            // keep tooltips above neighboring tiles
+  }
+
+  &__label-row {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     flex-start;
+    gap:             8px;
+    margin-bottom:   8px;
+  }
+  &__label {
+    font-size: 11px;
+    color: var(--m-dim);
+    font-weight: 500;
+    line-height: 1.3;
+    flex: 1;
+  }
+  &__value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--m-ink);
+    letter-spacing: -0.6px;
+    line-height: 1;
+  }
+  &__hint {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--m-dim);
+    line-height: 1.4;
+  }
+
+  &--good .kpi-tile__value { color: var(--m-good); }
+  &--warn .kpi-tile__value { color: var(--m-warn); }
+
+  &--changed {
+    animation: kpi-flash 1.6s ease;
+  }
+  &--changed::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--m-primary);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+}
+
+@keyframes kpi-flash {
+  0%   { background: #EFF6FF; }
+  100% { background: var(--m-surface); }
+}
+
+// ── Chart layout ──────────────────────────────────────────────
+.chart-row {
+  display: grid;
+  gap: 16px;
+  &--2col { grid-template-columns: 1fr 1fr; }
+}
+
+.chart-card {
+  background:    var(--m-surface);
+  border:        1px solid var(--m-border);
+  border-radius: var(--radius-lg);
+  padding:       20px 22px 22px;
+  box-shadow:    var(--shadow-sm);
+  display:       flex;
+  flex-direction: column;
+  overflow:      visible;     // tooltips can escape
+}
+
+.chart-header {
+  margin-bottom: 14px;
+
+  &__top {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    gap:             10px;
+  }
+  &__title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--m-ink);
+    letter-spacing: -0.3px;
+  }
+  &__sub {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--m-dim);
+  }
+}
+
+// ── Recharts tooltip ──────────────────────────────────────────
+.m-tooltip {
+  background:    var(--m-surface);
+  border:        1px solid var(--m-border-hi);
+  border-radius: var(--radius-sm);
+  padding:       10px 12px;
+  font-family:   var(--font-sans);
+  font-size:     12px;
+  box-shadow:    var(--shadow-hi);
+  min-width:     140px;
+
+  &__label {
+    font-weight: 600;
+    color: var(--m-ink);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--m-border);
+  }
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 3px 0;
+  }
+  &__dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  &__name {
+    color: var(--m-ink-soft);
+    flex: 1;
+  }
+  &__val {
+    color: var(--m-ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// ── Donut + legend ────────────────────────────────────────────
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.donut-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 12px 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+  }
+  &__dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+  }
+  &__name { color: var(--m-ink-soft); }
+  &__val  {
+    color: var(--m-ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  &__pct {
+    color: var(--m-dim);
+    font-size: 11px;
+    width: 32px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// ── Funnel ────────────────────────────────────────────────────
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  &__label {
+    font-size: 12px;
+    color: var(--m-ink-soft);
+    font-weight: 500;
+  }
+  &__bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__bar {
+    height: 28px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    transition: width 0.5s ease;
+    min-width: 50px;
+    font-variant-numeric: tabular-nums;
+  }
+  &__pct {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--m-primary);
+    width: 50px;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// ── Channel rows ──────────────────────────────────────────────
+.channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.channel-row {
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  &__name {
+    color: var(--m-ink-soft);
+    font-weight: 500;
+  }
+  &__val {
+    color: var(--m-ink);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  &__track {
+    height: 8px;
+    background: var(--m-bg);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  &__fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+}
+
+// ── Branches table ───────────────────────────────────────────
+.branches {
+  display: flex;
+  flex-direction: column;
+
+  &__head {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.8fr;
+    gap: 12px;
+    padding: 10px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--m-dim);
+    font-weight: 600;
+    border-bottom: 1px solid var(--m-border);
+  }
+  &__row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.8fr;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid var(--m-border);
+    font-size: 13px;
+    align-items: center;
+    font-variant-numeric: tabular-nums;
+    &:last-child { border-bottom: none; }
+    &:hover { background: var(--m-bg); }
+  }
+  &__region {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--m-ink);
+    font-weight: 600;
+  }
+  &__rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; height: 24px;
+    background: var(--m-bg);
+    border: 1px solid var(--m-border);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--m-primary);
+  }
+  &__bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--m-bg);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  &__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--m-primary), var(--m-primary-alt));
+    transition: width 0.5s ease;
+  }
+  &__bar-val {
+    width: 36px;
+    text-align: right;
+    color: var(--m-ink-soft);
+    font-weight: 600;
+  }
+}
+.ta-r { text-align: right; }
+
+// ── Gauges ────────────────────────────────────────────────────
+.gauges {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 6px;
+}
+.gauge {
+  background: var(--m-bg);
+  border: 1px solid var(--m-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;          // tooltips can escape
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--m-ink);
+  }
+  &__svg {
+    width: 160px;
+    height: 90px;
+    margin-bottom: 2px;
+  }
+  &__value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: -8px;
+    line-height: 1;
+  }
+  &__benchmark {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--m-dim);
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────────
+@media (max-width: 1280px) {
+  .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 1024px) {
+  .kpi-grid    { grid-template-columns: repeat(3, 1fr); }
+  .chart-row--2col { grid-template-columns: 1fr; }
+  .gauges      { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .kpi-grid    { grid-template-columns: repeat(2, 1fr); }
+  .branches__head, .branches__row { grid-template-columns: 1fr 1fr; }
+  .branches__head > *:nth-child(n+3), .branches__row > *:nth-child(n+3) { display: none; }
+  // Tooltips on small screens should anchor on the right edge of the viewport
+  .info-icon__tip { width: 220px; }
+}
